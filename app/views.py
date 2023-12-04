@@ -1,31 +1,42 @@
-from rest_framework.response import Response
-from rest_framework.views import APIView
-import pandas as pd
-from django.shortcuts import render
-from rest_framework import viewsets
-# from .serializer import MarcaSerializer, ModeloSerializer, AnioSerializer
-import json
-import os
-from rest_framework import status
-from .serializer import CarSerializer, YearSerializer
-# from .models import Car
+# from rest_framework.response import Response
+# from rest_framework.views import APIView
+# import pandas as pd
+# from django.shortcuts import render
+# from rest_framework import viewsets, generics
+# # from .serializer import MarcaSerializer, ModeloSerializer, AnioSerializer
+# import json
+# import os
+# from rest_framework import status
+# from .serializer import CarMakeSerializer, CarModelSerializer, CarYearSerializer
+# from .models import CarMake, CarModel, CarYear
 
-# Create your views here.
-# class CarView(viewsets.ModelViewSet):
-#     serializer_class = CarSerializer
-#     queryset = Car.object.all()
 
-# class MarcaView(APIView):
+
+
+
+# Clases con JSON
+# class CarView(APIView):
 #     def get(self, request, format=None):
-#         marcas_df = pd.read_csv('marcas.csv')
-#         serializer = MarcaSerializer(marcas_df.to_dict(orient='records'), many=True)
-#         print(serializer)
-#         print(serializer.data)
-#         return Response(serializer)
-#     @staticmethod
-#     def get_extra_actions():
-#         return []
+#         # Lee el archivo JSON y carga los datos
+#         with open('data.json', 'r') as json_file:
+#             cars_data = json.load(json_file)
+
+#         # Serializa los datos y los devuelve como respuesta
+#         serializer = CarSerializer(cars_data, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
     
+
+# class CarView(APIView):
+#     def get(self, request, *args, **kwargs):
+#         # Cargar datos desde el JSON
+#         json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data.json')
+        
+#         with open(json_path) as json_file:
+#             data = json.load(json_file)
+
+#         # Retorna la respuesta
+#         return Response(data)
+     
 
 # Clases de CSV
 
@@ -61,25 +72,3 @@ from .serializer import CarSerializer, YearSerializer
 #         return []
     
 
-# Clases con JSON
-# class CarView(APIView):
-#     def get(self, request, format=None):
-#         # Lee el archivo JSON y carga los datos
-#         with open('data.json', 'r') as json_file:
-#             cars_data = json.load(json_file)
-
-#         # Serializa los datos y los devuelve como respuesta
-#         serializer = CarSerializer(cars_data, many=True)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
-    
-
-class CarView(APIView):
-    def get(self, request, *args, **kwargs):
-        # Cargar datos desde el JSON
-        json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data.json')
-        
-        with open(json_path) as json_file:
-            data = json.load(json_file)
-
-        # Retorna la respuesta
-        return Response(data)

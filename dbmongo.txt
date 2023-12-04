@@ -1,0 +1,8 @@
+Cluster0
+
+selopezn
+testmongodb
+
+mongodb+srv://selopezn:testmongodb@cluster0.vzdgmvh.mongodb.net/
+
+191.112.181.101/32
