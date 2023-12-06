@@ -48,7 +48,7 @@ def validate_year(value):
 class CarAnio(models.Model):
     car_marca = models.ForeignKey(CarMarca, on_delete=models.CASCADE, verbose_name="Id Marca")
     car_modelo = models.ForeignKey(CarModelo, on_delete=models.CASCADE, verbose_name="Id Modelo") #, limit_choices_to={'make__id': models.F('make')}
-    anio = models.IntegerField(max_length=4,verbose_name="Año",
+    anio = models.IntegerField(verbose_name="Año",
                                validators=[validate_year, 
                                            MinValueValidator(1900), 
                                            MaxValueValidator(limit_value=9999)],
